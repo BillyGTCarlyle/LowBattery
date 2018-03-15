@@ -818,9 +818,11 @@ main.o: main.cpp
 
 ####### Install
 
-install:  FORCE
+install: low_battery
+	cp low_battery /usr/bin
 
-uninstall:  FORCE
+uninstall: 
+	rm /usr/bin/low_battery
 
 FORCE:
 
