@@ -1,8 +1,11 @@
 while true
 do
 	battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
-	if [ $battery_level -le 10 ]; then
+	battery_status=`acpi -b | grep -P -o '(Charging|Discharging)'`
+	if [ $battery_level -le 15 ]; then
+		if [ $battery_status = 'Discharging' ]; then
 		low_battery
+		fi
 	fi
-	sleep 100
+	sleep 60
 done
